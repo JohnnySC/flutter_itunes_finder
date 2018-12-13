@@ -16,17 +16,18 @@ class SearchTracksPresenterImpl implements SearchTracksPresenter, SearchTracksIn
       mView.showProgress();
       mInteractor.setDataCallback(this);
       mInteractor.searchTracks(text);
+    } else {
+      mView.clear();
     }
   }
 
   @override
-  void returnError() {
-    mView.showError("Check the connection");
+  void returnError(String error) {
+    mView.showError(error);
   }
 
   @override
   void returnTracks(List<Track> tracks) {
     mView.showTracks(tracks);
   }
-
 }

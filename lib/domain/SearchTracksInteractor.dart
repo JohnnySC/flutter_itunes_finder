@@ -9,7 +9,7 @@ abstract class SearchTracksInteractor {
 
 abstract class SearchTracksInteractorDataCallback {
 
-  void returnError();
+  void returnError(String error);
 
   void returnTracks(List<Track> tracks);
 }

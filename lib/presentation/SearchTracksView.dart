@@ -7,4 +7,6 @@ abstract class SearchTracksView {
   void showProgress();
 
   void showTracks(List<Track> tracks);
+
+  void clear();
 }

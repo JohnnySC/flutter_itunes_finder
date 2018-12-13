@@ -37,19 +37,19 @@ Widget buildTrackRow(Track track) {
               ])));
 }
 
-AudioPlayer audioPlayer;
+AudioPlayer _audioPlayer;
 
 _playAudio(String url) {
-  if (audioPlayer != null) {
-    audioPlayer.release();
+  if (_audioPlayer != null) {
+    _audioPlayer.release();
   }
-  audioPlayer = new AudioPlayer();
+  _audioPlayer = new AudioPlayer();
   AudioPlayer.logEnabled = true;
   play(url);
 }
 
 play(String url) async {
-  int result = await audioPlayer.play(url);
+  int result = await _audioPlayer.play(url);
   if (result == 1) {
     // success
   }

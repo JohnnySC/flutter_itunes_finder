@@ -81,6 +81,14 @@ class SearchTracksWidgetState extends State<SearchTracksWidget>
     });
   }
 
+  @override
+  void clear() {
+    setState(() {
+      _state = -1;
+      _tracks = [];
+    });
+  }
+
   Widget _buildTrackList() {
     switch (_state) {
       case STATE_ERROR:
