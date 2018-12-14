@@ -51,6 +51,9 @@ class SearchTracksWidgetState extends State<SearchTracksWidget>
         children: <Widget>[
           TextField(
             controller: mTextEditController,
+            decoration: InputDecoration(
+                hintText:
+                    'At least ${SearchTracksPresenterImpl.SEARCH_CHARACTERS_MIN} characters to search track'),
           ),
           _buildTrackList(),
         ],

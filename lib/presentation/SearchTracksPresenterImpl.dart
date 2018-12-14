@@ -5,6 +5,8 @@ import 'package:itunes_finder/presentation/SearchTracksView.dart';
 
 class SearchTracksPresenterImpl implements SearchTracksPresenter, SearchTracksInteractorDataCallback {
 
+  static const SEARCH_CHARACTERS_MIN = 4;
+
   final SearchTracksView mView;
   final SearchTracksInteractor mInteractor;
 
@@ -12,7 +14,7 @@ class SearchTracksPresenterImpl implements SearchTracksPresenter, SearchTracksIn
 
   @override
   void getTracks(String text) {
-    if (text.length > 1) {
+    if (text.length >= SEARCH_CHARACTERS_MIN) {
       mView.showProgress();
       mInteractor.setDataCallback(this);
       mInteractor.searchTracks(text);
