@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:itunes_finder/data/SearchTracksRepositoryImpl.dart';
 import 'package:itunes_finder/data/TrackList.dart';
-import 'package:itunes_finder/domain/SearchTracksInteractorImpl.dart';
+import 'package:itunes_finder/di/DependencyInjector.dart';
 import 'package:itunes_finder/presentation/SearchTracksPresenter.dart';
 import 'package:itunes_finder/presentation/SearchTracksPresenterImpl.dart';
 import 'package:itunes_finder/presentation/SearchTracksView.dart';
@@ -23,6 +22,7 @@ class SearchTracksWidgetState extends State<SearchTracksWidget>
   int _state;
   SearchTracksPresenter _presenter;
   List<Track> _tracks;
+  DependencyInjector _injector;
 
   @override
   void dispose() {
@@ -33,9 +33,9 @@ class SearchTracksWidgetState extends State<SearchTracksWidget>
   @override
   void initState() {
     super.initState();
-    //todo find a better way to inject dependencies
-    _presenter = SearchTracksPresenterImpl(
-        this, SearchTracksInteractorImpl(SearchTracksRepositoryImpl()));
+    _injector = DependencyInjector();
+    _presenter = _injector.presenter;
+    _presenter.setView(this);
     mTextEditController.addListener(_searchTracks);
   }
 
