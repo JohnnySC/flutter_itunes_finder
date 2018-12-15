@@ -12,15 +12,15 @@ void main() {
   SearchTracksView view = MockView();
   presenter.setView(view);
 
-  test('testing presenter', () {
+  test('testing presenter', () async {
     final enoughLongTextToSearch = "quiteLong";
     presenter.getTracks(enoughLongTextToSearch);
-    verify(view.showProgress());
-    verify(interactor.searchTracks(enoughLongTextToSearch));
+    await untilCalled(view.showProgress());
+    await untilCalled(interactor.searchTracks(enoughLongTextToSearch));
 
     final tooShortTextToSearch = "one";
     presenter.getTracks(tooShortTextToSearch);
-    verify(view.clear());
+    await untilCalled(view.clear());
   });
 }
 
