@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:itunes_finder/data/SearchTracksRepositoryImpl.dart';
 import 'package:itunes_finder/domain/SearchTracksInteractor.dart';
 import 'package:itunes_finder/domain/SearchTracksInteractorImpl.dart';
@@ -18,7 +19,7 @@ class DependencyInjector {
   }
 
   DependencyInjector._internal() {
-    _repository = SearchTracksRepositoryImpl();
+    _repository = SearchTracksRepositoryImpl(Connectivity());
     _interactor = SearchTracksInteractorImpl(_repository);
     _presenter = SearchTracksPresenterImpl(_interactor);
   }

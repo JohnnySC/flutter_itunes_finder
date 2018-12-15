@@ -1,5 +1,5 @@
-import 'package:http/http.dart' as http;
+import 'package:itunes_finder/data/TrackList.dart';
 
 abstract class SearchTracksRepository {
-  Future<http.Response> fetchTracksList(String keyword);
+  Future<TrackList> fetchTracksList(String keyword);
 }
