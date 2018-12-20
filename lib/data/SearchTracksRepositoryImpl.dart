@@ -2,15 +2,15 @@ import 'dart:convert';
 import 'package:connectivity/connectivity.dart';
 import 'package:http/http.dart' as http;
 import 'package:itunes_finder/data/Exceptions.dart';
+import 'package:itunes_finder/data/SearchTracksService.dart';
 import 'package:itunes_finder/data/TrackList.dart';
 import 'package:itunes_finder/domain/SearchTracksRepository.dart';
 
 class SearchTracksRepositoryImpl implements SearchTracksRepository {
-  static const url = 'https://itunes.apple.com/search?term=';
+  final Connectivity mConnectivity;
+  final SearchTracksService mService;
 
-  Connectivity mConnectivity;
-
-  SearchTracksRepositoryImpl(this.mConnectivity);
+  SearchTracksRepositoryImpl(this.mConnectivity, this.mService);
 
   @override
   Future<TrackList> fetchTracksList(String keyword) async {
@@ -19,7 +19,7 @@ class SearchTracksRepositoryImpl implements SearchTracksRepository {
     if (connectivityResult == ConnectivityResult.none) {
       throw NoConnectionException();
     } else {
-      final response = await http.get(url + keyword);
+      http.Response response = await mService.searchTracks(keyword);
 
       if (response.statusCode == 200) {
         return TrackList.fromJson(json.decode(response.body));
