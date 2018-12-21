@@ -10,6 +10,11 @@ class TrackList {
         tracks:
             (json['results'] as List).map((i) => Track.fromJson(i)).toList());
   }
+
+  @override
+  String toString() {
+    return 'TrackList{trackCount: $trackCount, tracks: $tracks}';
+  }
 }
 
 class Track {
@@ -36,5 +41,10 @@ class Track {
         trackPreviewUrl: json['previewUrl'],
         coverUrl: json['artworkUrl100'],
         price: json['trackPrice']);
+  }
+
+  @override
+  String toString() {
+    return 'Track{artistName: $artistName, name: $name, artistViewUrl: $artistViewUrl, trackPreviewUrl: $trackPreviewUrl, coverUrl: $coverUrl, price: $price}';
   }
 }
